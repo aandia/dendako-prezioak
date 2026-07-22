@@ -1,0 +1,15 @@
+{
+  "name": "Tiketa · Dendako prezioak",
+  "short_name": "Tiketa",
+  "description": "Eskaneatu dendako produktuak, apuntatu prezioak eta esportatu Excel-era.",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eceae3",
+  "theme_color": "#1c1b19",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
+  ]
+}
