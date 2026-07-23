@@ -561,8 +561,8 @@ prodUnitEl.addEventListener('change', updateBestPriceHint);
 
 async function loadItems(){
   try{
-    const res = await window.storage.get('items', false);
-    items = res && res.value ? JSON.parse(res.value) : [];
+    const raw = localStorage.getItem('tiketa_items');
+    items = raw ? JSON.parse(raw) : [];
   }catch(e){
     items = [];
   }
@@ -571,9 +571,10 @@ async function loadItems(){
 
 async function saveItems(){
   try{
-    await window.storage.set('items', JSON.stringify(items), false);
+    localStorage.setItem('tiketa_items', JSON.stringify(items));
   }catch(e){
     console.error('No se pudo guardar', e);
+    showToast('No se pudo guardar (almacenamiento lleno o bloqueado)');
   }
 }
 
@@ -729,7 +730,7 @@ document.getElementById('addBtn').onclick = ()=>{
   }else{
     const now = new Date();
     items.push({
-      id: Date.now(),
+      id: (crypto.randomUUID && crypto.randomUUID()) || (Date.now()+'-'+Math.random()),
       store, product, price, qty, unit, category, note,
       barcode: scannedCode,
       date: now.toLocaleDateString('es-ES'),
